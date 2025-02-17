@@ -1,6 +1,6 @@
 # awesomeproject
 
-Завдання 
+# Завдання 
 
 Створити папку Screens
 Створити компонент RegistrationScreen
