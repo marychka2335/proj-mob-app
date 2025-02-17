@@ -20,7 +20,6 @@ const InputField = ({
 }) => {
   const [showPassword, setShowPassword] = useState(false);
 
-  // Функція для перемикання видимості пароля
   const togglePasswordVisibility = () => {
     setShowPassword((prevState) => !prevState);
   };

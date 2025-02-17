@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { View, StyleSheet, Text, Alert, ActivityIndicator } from "react-native";
-import AuthForm from "./components/AuthForm"; // Імпортуємо компонент форми
+import AuthForm from "./components/AuthForm"; 
 import { StatusBar } from "expo-status-bar";
 
 import * as SplashScreen from "expo-splash-screen";
 import { useFonts } from "expo-font";
-import RegisterScreen from "./screen/RegisterScreen";
+import RegistrationScreen from "./screen/RegistrationScreen";
 
 SplashScreen.preventAutoHideAsync();
 

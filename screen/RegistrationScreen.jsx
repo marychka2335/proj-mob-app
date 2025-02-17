@@ -2,7 +2,7 @@ import { useState } from "react";
 import AuthForm from "../components/AuthForm";
 import { Alert } from "react-native";
 
-const RegisterScreen = () => {
+const RegistrationScreen = () => {
   const [isLogin, setIsLogin] = useState(false);
 
   const handleFormSubmit = (login, password) => {
@@ -26,4 +26,4 @@ const RegisterScreen = () => {
   );
 };
 
-export default RegisterScreen;
+export default RegistrationScreen;
