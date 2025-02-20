@@ -1,18 +1,20 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   View,
   Text,
   StyleSheet,
   Alert,
-  ImageBackground,
-  Image,
   TouchableOpacity,
   KeyboardAvoidingView,
   Dimensions,
+  Keyboard,
+  TouchableWithoutFeedback,
+  Platform,
 } from "react-native";
+
 import InputField from "./InputField";
 import ButtonComponent from "./ButtonComponent";
-import AddIcon from "../assets/icons/AddIcon";
+import ProfileImage from "./ProfileImage";
 
 const { height: SCREEN_HEIGHT } = Dimensions.get("screen");
 
@@ -34,41 +36,36 @@ const AuthForm = ({ isLogin, onSubmit, toggleForm }) => {
   };
 
   const handleSubmit = () => {
-    if (!login || !password) {
+    if (!email || !password || (!isLogin && !login)) {
       Alert.alert("Помилка", "Будь ласка, заповніть всі поля.");
       return;
     }
-    onSubmit(login, password);
+    if (isLogin) {
+      onSubmit(email, password);
+    } else {
+      onSubmit(email, password, login);
+    }
   };
 
   return (
-    <ImageBackground
-      style={[styles.image]}
-      source={require("../assets/images/PhotoBG.png")}
-      resizeMode="cover"
+    <KeyboardAvoidingView
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
-      <View
-        style={[
-          styles.form,
-          {
-            paddingTop: isLogin ? 0 : 60,
-          },
-        ]}
-      >
-        {!isLogin && (
-          <View style={styles.imgWrapper}>
-            <View style={[styles.square]}></View>
-            <TouchableOpacity>
-              <AddIcon style={styles.icon} />
-            </TouchableOpacity>
-          </View>
-        )}
-        <View>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+        <View
+          style={[
+            styles.form,
+            {
+              paddingTop: isLogin ? 0 : 60,
+            },
+          ]}
+        >
+          {!isLogin && <ProfileImage />}
           <View style={styles.container}>
             <Text style={styles.header}>
               {isLogin ? "Увійти" : "Реєстрація"}
             </Text>
-            <KeyboardAvoidingView style={styles.inputsContainer}>
+            <View style={styles.inputsContainer}>
               {!isLogin && (
                 <InputField
                   placeholder="Логін"
@@ -82,14 +79,20 @@ const AuthForm = ({ isLogin, onSubmit, toggleForm }) => {
                 value={email}
                 onChangeText={handleEmailChange}
                 isPassword={false}
+                autoComplete="email"
+                textContentType="emailAddress"
+                importantForAutofill="yes"
               />
               <InputField
                 isPassword={true}
                 placeholder="Пароль"
                 value={password}
                 onChangeText={handlePasswordChange}
+                autoComplete="password"
+                textContentType="password"
+                importantForAutofill="yes"
               />
-            </KeyboardAvoidingView>
+            </View>
 
             <ButtonComponent
               title={isLogin ? "Увійти" : "Зареєструватися"}
@@ -100,57 +103,32 @@ const AuthForm = ({ isLogin, onSubmit, toggleForm }) => {
 
           <View style={styles.toggleContainer}>
             <Text style={styles.toggleText}>
-              {isLogin ? "Немає акаунту?" : "Вже є акаунт?"}
+              {isLogin ? "Немає акаунту? " : "Вже є акаунт? "}
             </Text>
             <TouchableOpacity onPress={toggleForm}>
-              <Text style={styles.toggleText}>
-                {isLogin ? " Зареєструватися" : " Увійти"}
+              <Text
+                style={[styles.toggleText, { textDecorationLine: "underline" }]}
+              >
+                {isLogin ? "Зареєструватися" : "Увійти"}
               </Text>
             </TouchableOpacity>
           </View>
         </View>
-      </View>
-    </ImageBackground>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = StyleSheet.create({
-  image: {
-    flex: 1,
-    width: "100%",
-    justifyContent: "flex-end",
-  },
   form: {
+    minHeight: "50%",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
     backgroundColor: "#fff",
     paddingLeft: 16,
     paddingRight: 16,
-    paddingBottom: 0.05 * SCREEN_HEIGHT,
+    paddingBottom: 0.07 * SCREEN_HEIGHT,
     position: "relative",
-  },
-  imgWrapper: {
-    flex: 0,
-    position: "absolute",
-    top: -60,
-    left: "50%",
-    transform: "translateX(-50%)",
-    flexDirection: "row",
-  },
-  square: {
-    flex: 0,
-    width: 120,
-    height: 120,
-    backgroundColor: "#F6F6F6",
-    borderRadius: 16,
-  },
-  icon: {
-    flex: 0,
-    width: 25,
-    height: 25,
-    position: "absolute",
-    bottom: 14,
-    right: -12,
   },
   header: {
     color: "#212121",

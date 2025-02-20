@@ -2,25 +2,17 @@ import AuthForm from "../components/AuthForm";
 import { Alert, ImageBackground, StyleSheet } from "react-native";
 import { validateEmail, validatePassword } from "../helpers/validators";
 
-const RegistrationScreen = ({ navigation }) => {
-  const handleFormSubmit = (email, password, login) => {
+const LoginScreen = ({ navigation }) => {
+  const handleFormSubmit = (email, password) => {
     if (!validateEmail(email)) {
-      Alert.alert("Помилка реєстрації", "Некоректний email");
+      Alert.alert("Помилка входу", "Некоректний email");
       return;
     }
 
     if (!validatePassword(password)) {
       Alert.alert(
-        "Помилка реєстрації",
+        "Помилка входу",
         "Неправильний пароль. Пароль має містити мінімум 8 символів, одну велику літеру, одну малу літеру, одну цифру та один спецсимвол (@#$%^&*!)"
-      );
-      return;
-    }
-
-    if (login.length < 3) {
-      Alert.alert(
-        "Помилка реєстрації",
-        "Пароль має містити мінімум 8 символів, одну велику літеру, одну малу літеру, одну цифру та один спецсимвол (@#$%^&*!)"
       );
       return;
     }
@@ -29,7 +21,7 @@ const RegistrationScreen = ({ navigation }) => {
   };
 
   const toggleForm = () => {
-    navigation.navigate("Login");
+    navigation.navigate("Register");
   };
 
   return (
@@ -39,7 +31,7 @@ const RegistrationScreen = ({ navigation }) => {
       resizeMode="cover"
     >
       <AuthForm
-        isLogin={false}
+        isLogin={true}
         onSubmit={handleFormSubmit}
         toggleForm={toggleForm}
       />
@@ -55,4 +47,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RegistrationScreen;
+export default LoginScreen;
