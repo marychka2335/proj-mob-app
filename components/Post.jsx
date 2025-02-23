@@ -17,7 +17,6 @@ const Post = ({ post, isProfile, onCommentsPress, style }) => {
     <View style={[styles.container, style]}>
       <Image
         style={styles.image}
-        // source={{ uri: post.image }}
         source={require("../assets/images/PhotoBG.png")}
       />
       <Text style={styles.caption}>{post.caption}</Text>
