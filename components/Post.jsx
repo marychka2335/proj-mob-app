@@ -12,11 +12,12 @@ import ThumbUpIcon from "../assets/icons/ThumbUpIcon";
 import MessageIcon from "../assets/icons/MessageIcon";
 import MapPinIcon from "../assets/icons/MapPinIcon";
 
-const Post = ({ post, isProfile, onCommentsPress, style }) => {
+const Post = ({ post, isProfile, onCommentsPress, style, onLocationPress }) => {
   return (
     <View style={[styles.container, style]}>
       <Image
         style={styles.image}
+        // source={{ uri: post.image }}
         source={require("../assets/images/PhotoBG.png")}
       />
       <Text style={styles.caption}>{post.caption}</Text>
@@ -36,7 +37,7 @@ const Post = ({ post, isProfile, onCommentsPress, style }) => {
             </View>
           )}
         </View>
-        <TouchableOpacity style={styles.likes}>
+        <TouchableOpacity style={styles.likes} onPress={onLocationPress}>
           <MapPinIcon />
           <Text style={styles.locationText}>
             {post.location.length > 35
