@@ -1,11 +1,11 @@
 import { createStackNavigator } from "@react-navigation/stack";
 import { TouchableOpacity } from "react-native";
-import RegisterScreen from "../screens/RegisterScreen";
-import LoginScreen from "../screens/LoginScreen";
+import RegistrationScreen from "../screen/RegistrationScreen";
+import LoginScreen from "../screen/LoginScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
-import MapScreen from "../screens/MapScreen";
-import CommentsScreen from "../screens/CommentsScreen";
-import CreatePostsScreen from "../screens/CreatePostsScreen";
+import MapScreen from "../screen/MapScreen";
+import CommentsScreen from "../screen/CommentsScreen";
+import CreatePostsScreen from "../screen/CreatePostsScreen";
 import LeftArrowIcon from "../../assets/icons/LeftArrowIcon";
 import { useSelector } from "react-redux";
 
@@ -82,7 +82,7 @@ const StackNavigator = () => {
         </>
       ) : (
         <>
-          <Stack.Screen name="Register" component={RegisterScreen} />
+          <Stack.Screen name="Register" component={RegistrationScreen} />
           <Stack.Screen name="Login" component={LoginScreen} />
         </>
       )}

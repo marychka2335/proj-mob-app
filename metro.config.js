@@ -1,9 +1,13 @@
-// Learn more https://docs.expo.io/guides/customizing-metro
-const { getDefaultConfig } = require("expo/metro-config");
+const { getDefaultConfig } = require('@expo/metro-config');
 
-/** @type {import('expo/metro-config').MetroConfig} */
 const defaultConfig = getDefaultConfig(__dirname);
-// defaultConfig.resolver.assetExts.push("cjs", "js", "json", "ts", "tsx");
-defaultConfig.resolver.sourceExts.push("cjs", "js", "json", "ts", "tsx");
+
+defaultConfig.resolver.extraNodeModules = {
+  'react-native': require.resolve('react-native-web')
+};
+
+defaultConfig.resolver.blacklistRE = [
+  /.*\/react-native\/Libraries\/Utilities\/codegenNativeCommands\.js/,
+];
 
 module.exports = defaultConfig;

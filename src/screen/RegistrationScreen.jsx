@@ -5,7 +5,7 @@ import { registerDB } from "../utils/auth";
 import { addUser, uploadImage, getImageUrl } from "../utils/firestore";
 import { useDispatch, useSelector } from "react-redux";
 
-const RegistratiohScreen = ({ navigation }) => {
+const RegistrationScreen = ({ navigation }) => {
   const dispatch = useDispatch();
   // const userInfo = useSelector((state) => state.user.userInfo);
 

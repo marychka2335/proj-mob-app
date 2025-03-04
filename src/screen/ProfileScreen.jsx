@@ -11,7 +11,7 @@ import {
 import ProfileImage from "../components/ProfileImage";
 import Post from "../components/Post";
 import { FlatList } from "react-native-gesture-handler";
-import LogoutIcon from "../assets/icons/LogoutIcon";
+import LogOutIcon from "../../assets/icons/LogOutIcon";
 import { useDispatch, useSelector } from "react-redux";
 import { logoutDB } from "../utils/auth";
 import { useFocusEffect } from "@react-navigation/native";
@@ -53,7 +53,7 @@ const ProfileScreen = ({ navigation }) => {
           logoutDB(dispatch);
         }}
       >
-        <LogoutIcon />
+        <LogOutIcon />
       </TouchableOpacity>
     </View>
   );

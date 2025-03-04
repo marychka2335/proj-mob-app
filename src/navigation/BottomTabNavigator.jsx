@@ -1,9 +1,9 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { StyleSheet, TouchableOpacity, View } from "react-native";
-import ProfileScreen from "../screens/ProfileScreen";
-import CreatePostsScreen from "../screens/CreatePostsScreen";
-import PostsScreen from "../screens/PostsScreen";
-import LogoutIcon from "../assets/icons/LogoutIcon";
+import ProfileScreen from "../screen/ProfileScreen";
+import CreatePostsScreen from "../screen/CreatePostsScreen";
+import PostsScreen from "../screen/PostsScreen";
+import LogOutIcon from "../../assets/icons/LogOutIcon";
 import GridIcon from "../../assets/icons/GridIcon";
 import PlusIcon from "../../assets/icons/PlusIcon";
 import UserIcon from "../../assets/icons/UserIcon";
@@ -48,7 +48,7 @@ const BottomTabNavigator = () => {
                 logoutDB(dispatch);
               }}
             >
-              <LogoutIcon />
+              <LogOutIcon />
             </TouchableOpacity>
           ),
           tabBarIcon: () => <GridIcon />,

@@ -36,9 +36,6 @@ const App = () => {
         loading={<ActivityIndicator size="large" />}
         persistor={store.persistor}
       >
-        {/* <NavigationContainer>
-          <StackNavigator />
-        </NavigationContainer> */}
         <AuthListener />
       </PersistGate>
     </Provider>

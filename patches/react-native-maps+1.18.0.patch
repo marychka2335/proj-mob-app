@@ -1,0 +1,29 @@
+diff --git a/node_modules/react-native-maps/lib/MapMarkerNativeComponent.js b/node_modules/react-native-maps/lib/MapMarkerNativeComponent.js
+index 919f6d5..8f3277d 100644
+--- a/node_modules/react-native-maps/lib/MapMarkerNativeComponent.js
++++ b/node_modules/react-native-maps/lib/MapMarkerNativeComponent.js
+@@ -4,8 +4,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
+ };
+ Object.defineProperty(exports, "__esModule", { value: true });
+ exports.Commands = void 0;
+-const codegenNativeCommands_1 = __importDefault(require("react-native/Libraries/Utilities/codegenNativeCommands"));
+-exports.Commands = (0, codegenNativeCommands_1.default)({
++
++const { Platform } = require('react-native'); // Импортируем Platform
++
++let codegenNativeCommands = null;
++
++if (Platform.OS !== 'web') {
++    codegenNativeCommands = __importDefault(require('react-native/Libraries/Utilities/codegenNativeCommands')).default;
++}
++
++exports.Commands = codegenNativeCommands ? codegenNativeCommands({
+     supportedCommands: [
+         'showCallout',
+         'hideCallout',
+@@ -14,4 +22,4 @@ exports.Commands = (0, codegenNativeCommands_1.default)({
+         'redraw',
+         'setCoordinates',
+     ],
+-});
++}) : null; // Используем условный оператор
